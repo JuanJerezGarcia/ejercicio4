@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ejercicio4</string>
+    <string name="miTextoxml">texto desde string.xml</string>
+    <string name="format_string_res">Cantidad de ítems: %1$s</string>
+    <string-array name="string_array_res">
+        <item>Elemto 1</item>
+        <item>Elemto 2</item>
+        <item>Elemto 3</item>
+    </string-array>
+</resources>
