@@ -10,6 +10,7 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -25,19 +26,11 @@ fun MyTextField() {
         Modifier
             .fillMaxWidth()
             .padding(20.dp)
-    ){
+    ) {
         TextField(value = name, onValueChange = { name = it })
     }
 }
-@Preview(
-    showBackground = true,
-    name = "P1",
-    fontScale = 1.1f,
-    showSystemUi = true,
-    apiLevel = 33,
-    device = Devices.NEXUS_6,
-    backgroundColor = 10000000
-)
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyOutlinedTextField() {
@@ -51,6 +44,39 @@ fun MyOutlinedTextField() {
             value = name,
             onValueChange = { name = it },
             label = { Text(text = "nombre") }
+        )
+    }
+}
+
+@Preview(
+    showBackground = true,
+    name = "P1",
+    fontScale = 1.1f,
+    showSystemUi = true,
+    apiLevel = 33,
+    device = Devices.NEXUS_6,
+    backgroundColor = 10000000
+)
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun LabelAndPlaceHolderExample() {
+    var address by remember { mutableStateOf("") }
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .padding(20.dp)
+    ) {
+        OutlinedTextField(
+            value = address,
+            onValueChange = {
+                address = if (it.contains("a")) {
+                    it.replace("a", "")
+                } else {
+                    it
+                }
+            },
+            label = { Text("Dirección") },
+            placeholder = { Text("Donde vives") }
         )
     }
 }
